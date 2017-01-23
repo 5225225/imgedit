@@ -4,6 +4,9 @@ CFLAGS= -O3 -Weverything -Werror -Wno-missing-field-initializers -Wno-gnu-statem
 
 default: main
 
+debug: CFLAGS += -DDEBUG -g -O0
+debug: main
+
 main: main.c imgedit.o imgeditppm.o imgeditfarb.o filters.o
 	$(CC) $(CFLAGS) $(TOLINK) main.c imgedit.o imgeditppm.o imgeditfarb.o filters.o -o main
 
