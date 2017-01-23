@@ -1,1 +1,1 @@
-struct image *ReadImagePPM(FILE *fp);
+image *ReadImagePPM(FILE *fp);

@@ -7,7 +7,7 @@
 #include "imgeditfarb.h"
 #include "util.c"
 
-struct image *ReadImageFarbfeld(FILE *fp) {
+image *ReadImageFarbfeld(FILE *fp) {
     char magic[9] = "        ";
     uint32_t width = 0;
     uint32_t height = 0;
@@ -21,7 +21,7 @@ struct image *ReadImageFarbfeld(FILE *fp) {
     height = be32toh(height);
 
 
-    struct image *img = InitImage(width, height);
+    image *img = InitImage(width, height);
 
     for (uint64_t i=0; i<width*height; i++) {
         uint16_t r;
@@ -39,7 +39,7 @@ struct image *ReadImageFarbfeld(FILE *fp) {
         double newb = be16toh(b) / 65535.0;
         double newa = be16toh(a) / 65535.0;
 
-        struct pixel pixel = {newr, newg, newb, newa};
+        pixel pixel = {newr, newg, newb, newa};
 
         SetRawPixel(img, i, pixel);
     }
@@ -47,7 +47,7 @@ struct image *ReadImageFarbfeld(FILE *fp) {
     return img;
 }
 
-void WriteImageFarbfeld(struct image *img, FILE *fp) {
+void WriteImageFarbfeld(image *img, FILE *fp) {
     char magic[] = FARBFELD_MAGIC_STRING;
     uint32_t width = img -> width;
     uint32_t height = img -> height;
@@ -60,7 +60,7 @@ void WriteImageFarbfeld(struct image *img, FILE *fp) {
     fwrite(&adjusted_height, sizeof(height), 1, fp);
 
     for (uint64_t i=0; i<width*height; i++) {
-        struct pixel pixel = GetRawPixel(img, i);
+        pixel pixel = GetRawPixel(img, i);
 
         uint16_t r = htobe16(CLAMP(pixel.r * 65535, 0, 65535));
         uint16_t g = htobe16(CLAMP(pixel.g * 65535, 0, 65535));

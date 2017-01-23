@@ -1,9 +1,9 @@
-void BoxBlur(struct image *img, uint32_t xsize, uint32_t ysize);
-void FakeGaussianBlur(struct image *img, double sx, double sy);
-void HorizontalBoxBlur(struct image *img, uint32_t size);
-void VerticalBoxBlur(struct image *img, uint32_t size);
+void BoxBlur(image *img, uint32_t xsize, uint32_t ysize);
+void FakeGaussianBlur(image *img, double sx, double sy);
+void HorizontalBoxBlur(image *img, uint32_t size);
+void VerticalBoxBlur(image *img, uint32_t size);
 
-void FillPixel(struct image *img, struct pixel pixel);
-void WhiteNoise(struct image *img);
+void FillPixel(image *img, pixel pixel);
+void WhiteNoise(image *img);
 
-void SubtractRGB(struct image *a, struct image *b);
+void SubtractRGB(image *a, image *b);

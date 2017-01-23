@@ -8,7 +8,7 @@
 #include "imgeditppm.h"
 #include "util.c"
 
-struct image *ReadImagePPM(FILE *fp) {
+image *ReadImagePPM(FILE *fp) {
     char magic[3] = "  ";
     uint32_t width = 0;
     uint32_t height = 0;
@@ -25,7 +25,7 @@ struct image *ReadImagePPM(FILE *fp) {
         return NULL;
     }
 
-    struct image *img = InitImage(width, height);
+    image *img = InitImage(width, height);
 
     size_t readsize = maxval < 256 ? 1 : 2;
 
@@ -42,7 +42,7 @@ struct image *ReadImagePPM(FILE *fp) {
         double newg = le16toh(g) / (double) maxval;
         double newb = le16toh(b) / (double) maxval;
 
-        SetRawPixel(img, i, (struct pixel){newr, newg, newb, 1.0});
+        SetRawPixel(img, i, (pixel){newr, newg, newb, 1.0});
     }
 
     return img;

@@ -10,19 +10,19 @@ typedef struct {
 typedef struct {
     uint32_t width;
     uint32_t height;
-    struct pixel *pixels;
+    pixel *pixels;
 } image;
 
-struct image *InitImage(uint32_t width, uint32_t height);
-struct image *CloneImage(struct image *img);
-struct image *SelectBox(struct image *img, uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2);
-void CopyImage(struct image *baseimg, struct image *topimg, uint32_t x1, uint32_t y1);
-void FreeImage(struct image *img);
+image *InitImage(uint32_t width, uint32_t height);
+image *CloneImage(image *img);
+image *SelectBox(image *img, uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2);
+void CopyImage(image *baseimg, image *topimg, uint32_t x1, uint32_t y1);
+void FreeImage(image *img);
 
-struct pixel GetPixel(struct image *img, int64_t x, int64_t y);
-struct pixel GetRawPixel(struct image *img, uint64_t i);
+pixel GetPixel(image *img, int64_t x, int64_t y);
+pixel GetRawPixel(image *img, uint64_t i);
 
-char PixelInBounds(struct image *img, int64_t x, int64_t y);
+char PixelInBounds(image *img, int64_t x, int64_t y);
 
-void SetPixel(struct image *img, int64_t x, int64_t y, struct pixel pixel);
-void SetRawPixel(struct image *img, uint64_t i, struct pixel pixel);
+void SetPixel(image *img, int64_t x, int64_t y, pixel pixel);
+void SetRawPixel(image *img, uint64_t i, pixel pixel);
